@@ -1,0 +1,185 @@
+/* ================================
+   Tema Girly / Pastel — index.css
+   ================================ */
+
+/* Paleta base (pasteles) */
+:root{
+  --bg:        #fff7fb;  /* rosa súper claro */
+  --bg-2:      #fdf1ff;  /* lila muy clarito */
+  --text:      #4b5563;  /* gris medio */
+  --title:     #3b3b4f;  /* gris más oscuro */
+  --card:      #ffffff;  /* blanco */
+  --border:    #f7c5e7;  /* rosa pálido */
+  --accent:    #ff8ccf;  /* rosa pastel */
+  --accent-2:  #c9a8ff;  /* lila pastel */
+  --accent-3:  #ffd1e8;  /* rosita bebé */
+  --accent-4:  #c2f0ff;  /* celeste pastel */
+  --shadow:    0 8px 24px rgba(255, 140, 207, 0.18);
+  --shadow-sm: 0 4px 12px rgba(201, 168, 255, 0.18);
+}
+
+/* Reset suave + base tipográfica */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body{
+  margin: 0;
+  font-family: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, "Helvetica Neue", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at -10% -20%, var(--bg-2), transparent 60%),
+    radial-gradient(1000px 500px at 110% 0%, var(--accent-3), transparent 60%),
+    var(--bg);
+  line-height: 1.55;
+}
+
+/* Layout principal */
+main{
+  max-width: 1100px;
+  margin: 32px auto 56px;
+  padding: 0 16px;
+}
+
+/* Encabezados */
+h1, h2{
+  margin: 22px 0 14px;
+  font-weight: 800;
+  color: var(--title);
+  letter-spacing: 0.3px;
+  position: relative;
+  display: inline-block;
+}
+h1::after, h2::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(90deg, var(--accent-3), var(--accent-4));
+  border-radius: 999px;
+  opacity: .55;
+}
+
+/* Buscador */
+main input[type="text"]{
+  width: 100%;
+  max-width: 520px;
+  padding: 12px 14px;
+  border: 2px solid #ffe2f3;
+  border-radius: 14px;
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+  transition: box-shadow .16s ease, border-color .16s ease, transform .06s ease;
+  margin: 8px 0 22px;
+}
+main input[type="text"]:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 6px rgba(255, 140, 207,.12);
+  transform: translateY(-1px);
+}
+
+/* Grid de cards */
+.component-cardSongList{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* Card */
+.component-cardsong{
+  background: linear-gradient(180deg, #ffffff, #fffafd);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  position: relative;
+  overflow: hidden;
+}
+.component-cardsong::before{
+  /* brillo suave en esquina */
+  content: "";
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  background: radial-gradient(closest-side, rgba(255,140,207,.28), transparent 70%);
+  transform: rotate(15deg);
+}
+.component-cardsong:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: #ffc8ec;
+}
+
+/* Imagen */
+.component-cardsong img{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+/* Título + artista */
+.component-cardsong h1{
+  font-size: 16px;
+  margin: 0 0 6px;
+  color: #2f2a35;
+}
+.component-cardsong p{
+  margin: 0 0 12px;
+  color: #6d6472;
+  font-size: 14px;
+}
+
+/* Botones base (Me gusta / Delete / Quitar) */
+.component-cardsong button{
+  appearance: none;
+  border: 2px solid #ffd9ef;
+  background: #fff;
+  color: #4b3d47;
+  font-size: 14px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .06s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+  margin-right: 8px;
+  box-shadow: 0 4px 12px rgba(255, 217, 239, .6);
+}
+.component-cardsong button:hover{
+  background: #fff3f9;
+  border-color: var(--accent);
+  box-shadow: 0 8px 18px rgba(255, 140, 207, .25);
+}
+.component-cardsong button:active{
+  transform: translateY(1px);
+}
+
+/* “Primario” (primer botón de la card, suele ser Me gusta) */
+.component-cardsong button:first-of-type{
+  background: linear-gradient(90deg, #ffe6f5, #f3e9ff);
+  border-color: #f8c2ea;
+  color: #7a2e5d;
+}
+
+/* Segundo botón (cuando hay dos: suele ser Delete en la lista principal) */
+.component-cardsong button + button{
+  background: linear-gradient(90deg, #ffe9ec, #ffe3f1);
+  border-color: #ffc4d4;
+  color: #7a203b;
+}
+
+/* Tercer botón (cuando hay tres: por si tuvieras los 3 a la vez) */
+.component-cardsong button + button + button{
+  background: linear-gradient(90deg, #eaf9ff, #f3eeff);
+  border-color: #c2f0ff;
+  color: #233c57;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px){
+  .component-cardsong img{ height: 150px; }
+  .component-cardSongList{ gap: 14px; }
+}
